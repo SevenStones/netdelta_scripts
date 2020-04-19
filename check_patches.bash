@@ -21,8 +21,8 @@ if [ "$1" == "-h" ]; then
 fi
 
 VENV_ROOT="/home/iantibble/jango/$1"
-MYSQL_DIR="${VENV_ROOT}/lib/python3.8/site-packages/django/db/backends/mysql"
-LIBNMAP_DIR="${VENV_ROOT}/lib/python3.8/site-packages/libnmap"
+MYSQL_DIR="${VENV_ROOT}/lib/python3.6/site-packages/django/db/backends/mysql"
+LIBNMAP_DIR="${VENV_ROOT}/lib/python3.6/site-packages/libnmap"
 
 if [ ! -d "${VENV_ROOT}" ]; then
   echo "Specified Virtualenv does not exist"

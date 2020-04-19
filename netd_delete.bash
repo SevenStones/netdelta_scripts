@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 
-if [ "$#" -ne 1 ]; then
-    echo "Usage: netd_deploy.bash site"
+if [ "$#" -gt 2 ]; then
+    echo "Usage: netd_delete.bash site [-p]"
     exit 1
 fi
 
@@ -11,20 +11,27 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
+if [ "$2" != "-p" ]; then
+    echo "unknown option supplied"
+    echo "Usage: netd_delete.bash site [-p]"
+    exit 1
+fi
+
 SITE=$1
 SITE_ROOT="/home/iantibble/netdelta_sites/${SITE}"
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
-PORT=$2
 
-echo "Delete database"
-mysql -e "DROP DATABASE IF EXISTS netdelta_$SITE;" --user=root --password=ankSQL4r4
+if [ $2 != "-p" ]; then
+  echo "Delete database"
+  mysql -e "DROP DATABASE IF EXISTS netdelta_$SITE;" --user=root --password=ankSQL4r4
 
-if [ "$?" == 0 ]; then
-    echo -e "Site netdelta database netdelta-$SITE deleted: [${GREEN}OK${NC}]"
-else
-    echo "Site database deletion failed"
-    exit 1
+  if [ "$?" == 0 ]; then
+      echo -e "Site netdelta database netdelta-$SITE deleted: [${GREEN}OK${NC}]"
+  else
+      echo "Site database deletion failed"
+      exit 1
+  fi
 fi
 
 echo "Delete site root directory"

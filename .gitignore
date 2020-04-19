@@ -1,6 +1,6 @@
-**/logs
 .idea
 .exit
+db.sqlite3
 celerybeat-schedule
 celerybeat.pid
 .env

@@ -21,9 +21,9 @@ if [[ $EUID -ne "$USER" ]]; then
     exit 1
 fi
 
-VIRTUALENV=`python -c 'import sys; print (sys.real_prefix)' 2>/dev/null`
+INVENV=`python -c 'import sys; print (sys.prefix)'`
 
-if [ -z "${VIRTUALENV}" ]; then
+if [ "$INVENV" == "/usr" ]; then
     echo "You must be a in virtualenv to run this"
     exit 1
 fi

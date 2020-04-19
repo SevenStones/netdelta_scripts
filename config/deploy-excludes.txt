@@ -1,5 +1,3 @@
-netdelta/settings.py
-netdelta/wsgi.py
 *.idea
 **/logs
 .exit

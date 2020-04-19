@@ -19,9 +19,9 @@ if [ "$#" == 2 ]; then
     fi
 fi
 
-python -c 'import sys; print (sys.real_prefix)' 2>/dev/null && INVENV=1 || INVENV=0
+INVENV=`python -c 'import sys; print (sys.prefix)'`
 
-if [ "$INVENV" == 0 ]; then
+if [ "$INVENV" == "/usr" ]; then
     echo "You must be a in virtualenv to run this"
     exit 1
 fi

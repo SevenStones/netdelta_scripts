@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-if [ "$#" -gt 2 ]; then
+if [ "$#" -gt 2 ] || [ "$#" -eq 0 ]; then
     echo "Usage: netd_delete.bash site [-p]"
     exit 1
 fi
@@ -22,12 +22,17 @@ SITE_ROOT="/home/iantibble/netdelta_sites/${SITE}"
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-if [ $2 != "-p" ]; then
+if [ -d "${SITE_ROOT}" ]; then
+  echo "Site root directory does not exist"
+  exit 1
+fi
+
+if [ "$2" != "-p" ] || [ "$#" == 1 ]; then
   echo "Delete database"
-  mysql -e "DROP DATABASE IF EXISTS netdelta_$SITE;" --user=root --password=ankSQL4r4
+  mysql -e "DROP DATABASE IF EXISTS netdelta_${SITE};" --user=root --password=ankSQL4r4
 
   if [ "$?" == 0 ]; then
-      echo -e "Site netdelta database netdelta-$SITE deleted: [${GREEN}OK${NC}]"
+      echo -e "Site netdelta database netdelta_${SITE} deleted: [${GREEN}OK${NC}]"
   else
       echo "Site database deletion failed"
       exit 1
@@ -35,7 +40,7 @@ if [ $2 != "-p" ]; then
 fi
 
 echo "Delete site root directory"
-rm -r ${SITE_ROOT}
+rm -r "${SITE_ROOT}"
 
 if [ "$?" == 0 ]; then
     echo -e "Site root deleted: [${GREEN}OK${NC}]"

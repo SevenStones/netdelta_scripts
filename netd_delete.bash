@@ -22,7 +22,7 @@ SITE_ROOT="/home/iantibble/netdelta_sites/${SITE}"
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-if [ -d "${SITE_ROOT}" ]; then
+if [ ! -d "${SITE_ROOT}" ]; then
   echo "Site root directory does not exist"
   exit 1
 fi

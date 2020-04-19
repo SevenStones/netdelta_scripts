@@ -65,7 +65,7 @@ do
         continue
     fi
 
-    cd ${SITE_ROOT}
+    cd ${SITE_ROOT} || { echo "Site root does not exist"; exit 1; }
     nohup $VIRTUALENV_DIR/bin/celery worker -E -A nd -n ${SITE} -Q ${SITE} --loglevel=info -B --logfile=${SITE_LOGS}/celery.log >/dev/null 2>&1 &
 
     if [ "$?" -eq 0 ]; then

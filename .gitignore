@@ -32,3 +32,4 @@ MANIFESTo__pycache__/
 *.py[cod]
 *$py.class
 ._*
+/config/.run_web.sh.swp

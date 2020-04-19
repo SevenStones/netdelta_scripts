@@ -24,8 +24,8 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 PORT="$2"
 VENV_ROOT="/home/iantibble/jango/netdelta304"
-MYSQL_DIR="${VENV_ROOT}/lib/python3.8/site-packages/django/db/backends/mysql"
-LIBNMAP_DIR="${VENV_ROOT}/lib/python3.8/site-packages/libnmap"
+MYSQL_DIR="${VENV_ROOT}/lib/python3.6/site-packages/django/db/backends/mysql"
+LIBNMAP_DIR="${VENV_ROOT}/lib/python3.6/site-packages/libnmap"
 
 
 function patch_MySQL_base(){
